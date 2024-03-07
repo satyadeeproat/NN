@@ -18,8 +18,8 @@ The folder structure looks like this
 
 ## Design Decision
 Both In Android and IOS, we are creating a Random array with digits 1-9 and keeping '.' as 3rd last and 'X' as last element.
-Then we create a button UI view for each number, For 'X', we create use material ui icon and use the particular unicode for backspace.
-We attach tapEvent to all the button to emit their values whenever it's being tapped. After creating all the UI view we will apend it to the main UI view.
+Then we create a button UI view for each number. For 'X', we use material ui icon and the particular unicode for backspace.
+We attach an eventlistner to all the button to emit the button values whenever it's being tapped. After creating all the button UI  we will apend it to the main UI view.
 
 Once component will be unmounted in React Native, we call hideKeyboard functionality to remove the above view.
 
