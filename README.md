@@ -1,34 +1,48 @@
-NN/
-│
-├── android/                   # Android native code and resources
-│   ├── app/                   # Source code for the Android app
-│   ├── build/                 # Compiled Android app files
-│   └── ...
+# Project Structure
 
-│
-├── ios/                       # iOS native code and resources
-│   ├── NN/                    # Xcode project for iOS app
-│   ├── Pods/                  # CocoaPods dependencies
-│   ├── CustomKeyboard.swift   # Xcode project for iOS app
-│   ├── NN-Bridgin-Header      # CocoaPods dependencies
-│   ├── NativeBridge.m         # Xcode project for iOS app
-│   └── ...
-│
-├── src/                       # Source code of React Native app
-│   ├── components/            # Reusable UI components
-│   │   ├── CustomKeyboard.tsx   # Component for keybord importing Native Custom Keyboard modules and event emittor
-│   │   ├── Header.tsx          # Component for header
-│   │   └── InputPinField.tsx   # Component for input pin field for masking and unmasking the pin
-│   │
-│   ├── screens/                # Components representing different screens
-│   │   └── Aunthentication.tsx # Screen component for Authenticating pin
-│   │
-│   ├── App.tsx             # Main entry point for the app
-│   └── ...
-│
-├── index.js                # Entry point for React Native app
-│
-└── ...                     # Other configuration files and assets
+## Description
+The folder structure looks like this 
+
+- **android/**: Contains the Android native code and resources for the application.
+  - **AppPackage.kt**  App Package to return modules of Custom Keyboard class 
+  - **CustomKeyboard.kt**  Custom keyboard module implementation in Swift 
+- **ios/**: Contains the iOS native code and resources for the application
+  - **CustomKeyboard.swift**  Custom keyboard module implementation in Swift 
+  - **NN-Bridging-Header.h**  Bridging header to expose obj-c to swift
+  - **NativeBridge.m**  obj-c file to expose methods from Custom keyboard class module 
+- **src/**: Contains the source code of the React Native application, including reusable UI components and screen components.
+  - **components/**: Contains reusable UI components such as a custom keyboard, header, and input pin field.
+  - **screens/**: Contains components representing different screens of the application, such as the authentication screen.
+  - **App.tsx**: Main entry point for the React Native app.
+- **index.js**: Entry point for the React Native app.
+
+## Design Decision
+Both In Android and IOS, we are creating a Random array with digits 1-9 and keeping '.' as 3rd last and 'X' as last element.
+Then we create a button UI view for each number, For 'X', we create use material ui icon and use the particular unicode for backspace.
+We attach tapEvent to all the button to emit their values whenever it's being tapped. After creating all the UI view we will apend it to the main UI view.
+
+Once component will be unmounted in React Native, we call hideKeyboard functionality to remove the above view.
+
+In React native side 
+```
+For showing the custom keyboard
+    const {CustomKeyboard} = NativeModules;
+    const showKeyboard = async () => {
+      await CustomKeyboard.showKeyboard();
+    }
+
+And to see which button is pressed
+  const {CustomKeyboard} = NativeModules;
+    const eventEmitter = new NativeEventEmitter(CustomKeyboard);
+    eventEmitter.addListener(
+      'ButtonPressEvent',
+      (event: {buttonTitle: ButtonTitle}) => {
+        const {buttonTitle} = event;
+        onPress(buttonTitle);
+      },
+    );
+```
+
 
 ## Step 1: Start the Metro Server
 
@@ -67,32 +81,6 @@ npm run ios
 # OR using Yarn
 yarn ios
 ```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
 # Screenshot of working code in ios and android
 
