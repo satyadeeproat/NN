@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {NativeEventEmitter, NativeModules} from 'react-native';
 
 export enum ButtonTitle {
-  DELETE = 'X',
+  delete = 'X',
   Zero = '0',
   One = '1',
   Two = '2',
@@ -13,7 +13,7 @@ export enum ButtonTitle {
   Seven = '7',
   Eight = '8',
   Nine = '9',
-  EMPTY = '.',
+  empty = '.',
 }
 
 interface KeyboardViewProps {

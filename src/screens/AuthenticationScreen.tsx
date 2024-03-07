@@ -8,12 +8,12 @@ export const AuthenticationScreen = () => {
 
   const onPress = useCallback(
     (buttonTitle: ButtonTitle) => {
-      if (ButtonTitle.EMPTY === buttonTitle || pin.length === 4) {
+      if (ButtonTitle.empty === buttonTitle || pin.length === 4) {
         return;
       }
       let newOtp;
 
-      if (buttonTitle === ButtonTitle.DELETE) {
+      if (buttonTitle === ButtonTitle.delete) {
         newOtp = pin.slice(0, -1);
       } else {
         newOtp = `${pin}${buttonTitle}`;

@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {Button, StyleSheet, TextInput, View} from 'react-native';
+import {Button, Platform, StyleSheet, TextInput, View} from 'react-native';
 
 interface InputPinFieldProps {
   value: string;
@@ -64,14 +64,17 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
   },
-  input: {
-    //  padding: 10,
-    //  width: 25,
-    //  margin: 10,
-    textAlign: 'center',
-    fontSize: 18,
-    // color: 'black',
-  },
+  input:
+    Platform.OS === 'ios'
+      ? {
+          padding: 10,
+          width: 25,
+          margin: 10,
+          textAlign: 'center',
+          fontSize: 18,
+          color: 'black',
+        }
+      : {fontSize: 18},
   controls: {
     display: 'flex',
     flexDirection: 'row',
