@@ -1,8 +1,33 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
-# Getting Started
-
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+NN/
+│
+├── android/                   # Android native code and resources
+│   ├── app/                   # Source code for the Android app
+│   ├── build/                 # Compiled Android app files
+│   └── ...
+│
+├── ios/                       # iOS native code and resources
+│   ├── NN/                    # Xcode project for iOS app
+│   ├── Pods/                  # CocoaPods dependencies
+│   ├── CustomKeyboard.swift   # Xcode project for iOS app
+│   ├── NN-Bridgin-Header      # CocoaPods dependencies
+│   ├── NativeBridge.m         # Xcode project for iOS app
+│   └── ...
+│
+├── src/                       # Source code of React Native app
+│   ├── components/            # Reusable UI components
+│   │   ├── CustomKeyboard.tsx   # Component for keybord importing Native Custom Keyboard modules and event emittor
+│   │   ├── Header.tsx          # Component for header
+│   │   └── InputPinField.tsx   # Component for input pin field for masking and unmasking the pin
+│   │
+│   ├── screens/                # Components representing different screens
+│   │   └── Aunthentication.tsx # Screen component for Authenticating pin
+│   │
+│   ├── App.tsx             # Main entry point for the app
+│   └── ...
+│
+├── index.js                # Entry point for React Native app
+│
+└── ...                     # Other configuration files and assets
 
 ## Step 1: Start the Metro Server
 
@@ -68,12 +93,11 @@ You've successfully run and modified your React Native App. :partying_face:
 
 If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
-# Learn More
+# Screenshot of working code in ios and android
 
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- ![alt text](https://github.com/satyadeeproat/NN/blob/main/images/ios1.png?raw=true)
+- ![alt text](https://github.com/satyadeeproat/NN/blob/main/images/ios2.png?raw=true)
+- ![alt text](https://github.com/satyadeeproat/NN/blob/main/images/ios3.png?raw=true)
+- ![alt text](https://github.com/satyadeeproat/NN/blob/main/images/android1.png?raw=true)
+- ![alt text](https://github.com/satyadeeproat/NN/blob/main/images/android2.png?raw=true)
+- ![alt text](https://github.com/satyadeeproat/NN/blob/main/images/android3.png?raw=true)
